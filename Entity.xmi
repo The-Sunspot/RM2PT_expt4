@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Entity:ModeloDatos
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:Entity="http://mm_modelodatos/1.0"
+    name="contacts">
+  <entities
+      name="form">
+    <attributes
+        name="form"
+        type="type"/>
+    <attributes
+        name="/contact.html"
+        type="action"/>
+    <attributes
+        name="post"
+        type="method"/>
+    <attributes
+        name="multipart/form-data"
+        type="enctype"/>
+  </entities>
+  
+  <entities
+      name="name">
+    <attributes
+        name="text"
+        type="type"/>
+    <attributes
+        name="Name"
+        type="label"/>
+    <attributes
+        name="false"
+        type="readonly"/>
+  </entities>
+  
+  <entities
+      name="telephone">
+    <attributes
+        name="text"
+        type="type"/>
+    <attributes
+        name="Telephone"
+        type="label"/>
+    <attributes
+        name="false"
+        type="readonly"/>
+  </entities>
+  
+  <entities
+      name="email">
+    <attributes
+        name="text"
+        type="type"/>
+    <attributes
+        name="E-mail"
+        type="label"/>
+    <attributes
+        name="false"
+        type="readonly"/>
+  </entities>
+  
+  <entities
+      name="description">
+    <attributes
+        name="textarea"
+        type="type"/>
+    <attributes
+        name="Description"
+        type="label"/>
+    <attributes
+        name="false"
+        type="readonly"/>
+    <attributes
+        name="3"
+        type="rows"/>
+    <attributes
+        name="4"
+        type="cols"/>
+  </entities>
+  
+  <entities
+      name="send">
+    <attributes
+        name="button"
+        type="type"/>
+    <attributes
+        name="Send"
+        type="label"/>
+    <attributes
+        name="false"
+        type="readonly"/>
+  </entities>
+</Entity:ModeloDatos>

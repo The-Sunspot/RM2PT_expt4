@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<HTML:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="contacts" 
+		action="/contact.html" method="post" enctype="multipart/form-data">
+  <elements xsi:type="HTML:Input" name="name" label="Name"/>
+  <elements xsi:type="HTML:Input" name="telephone" label="Telephone"/>
+  <elements xsi:type="HTML:Input" name="email" label="E-mail"/>
+  <elements xsi:type="HTML:Textarea" name="description" label="Description" cols="4" rows="3"/>
+  <elements xsi:type="hHTML:Button" name="send" label="Send"/>
+</HTML:Form>

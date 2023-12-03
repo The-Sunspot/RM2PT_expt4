@@ -1,0 +1,59 @@
+module atl;
+
+
+-- @path HtmlForm=/lab4/HTML.ecore
+-- @path ModeloDatos=/lab4/Entity.ecore
+
+create OUT : HtmlForm from IN : Entity;
+
+helper context Entity!Entity def: getStringAttrValue(type: String): String =
+	self.attributes->select(a | a.type = type)->collect(a | a.name)->first();
+
+helper context Entity!Entity def: getBoolAttrValue(type: String): Boolean =
+	self.attributes->select(a | a.type = type)->collect(a | a.name)->first() = 'true';
+
+helper context Entity!Entity def: isTypeOf(type: String): String =
+	self.getStringAttrValue('type') = type;
+	
+rule ModeloDatos2Form{
+	from m: Entity!ModeloDatos
+	to   f: HtmlForm!Form(
+		name <- m.name,
+		action <- m.entities->select(e | e.isTypeOf('form'))->first().getStringAttrValue('action'),
+		method <- m.entities->select(e | e.isTypeOf('form'))->first().getStringAttrValue('method'),
+		enctype <- m.entities->select(e | e.isTypeOf('form'))->first().getStringAttrValue('enctype'),
+		elements <- m.entities
+	)
+}
+
+rule Entity2Input{
+	from e: Entity!Entity(e.isTypeOf('text'))
+	to  it: HtmlForm!Input(
+		label <- e.getStringAttrValue('label'),
+		name <- e.name,
+		readonly <- e.getBoolAttrValue('readonly'),
+		value <- e.getStringAttrValue('value')
+	)
+}
+
+rule Entity2Button{
+	from e: Entity!Entity(e.isTypeOf('button'))
+	to  it: HtmlForm!Button(
+		label <- e.getStringAttrValue('label'),
+		name <- e.name,
+		readonly <- e.getBoolAttrValue('readonly')
+	)
+}
+
+rule Entity2Textarea{
+	from e: Entity!Entity(e.isTypeOf('textarea'))
+	to  ta: HtmlForm!Textarea(		
+		label <- e.getStringAttrValue('label'),
+		name <- e.name,
+		readonly <- e.getBoolAttrValue('readonly'),
+		value <- e.getStringAttrValue('value'),
+		cols <- e.getStringAttrValue('cols').toInteger(),
+		rows <- e.getStringAttrValue('rows').toInteger()
+	)
+}
+
