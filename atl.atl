@@ -2,7 +2,7 @@ module atl;
 
 
 -- @path HtmlForm=/lab4/HTML.ecore
--- @path ModeloDatos=/lab4/Entity.ecore
+-- @path Entity=/lab4/Entity.ecore
 
 create OUT : HtmlForm from IN : Entity;
 
@@ -15,8 +15,8 @@ helper context Entity!Entity def: getBoolAttrValue(type: String): Boolean =
 helper context Entity!Entity def: isTypeOf(type: String): String =
 	self.getStringAttrValue('type') = type;
 	
-rule ModeloDatos2Form{
-	from m: Entity!ModeloDatos
+rule DataModel2Form{
+	from m: Entity!DataModel
 	to   f: HtmlForm!Form(
 		name <- m.name,
 		action <- m.entities->select(e | e.isTypeOf('form'))->first().getStringAttrValue('action'),

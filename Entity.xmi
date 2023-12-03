@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
-<Entity:ModeloDatos
+<Entity:DataModel
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:Entity="http://mm_modelodatos/1.0"
+    xmlns:Entity="Entity"
     name="contacts">
   <entities
       name="form">
@@ -90,4 +90,4 @@
         name="false"
         type="readonly"/>
   </entities>
-</Entity:ModeloDatos>
+</Entity:DataModel>

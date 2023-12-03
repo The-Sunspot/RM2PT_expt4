@@ -41,14 +41,14 @@
 		<constant value="NTransientLink;.getNamedTargetFromSource(JS):J"/>
 		<constant value="name"/>
 		<constant value="__matcher__"/>
-		<constant value="A.__matchModeloDatos2Form():V"/>
+		<constant value="A.__matchDataModel2Form():V"/>
 		<constant value="A.__matchEntity2Input():V"/>
 		<constant value="A.__matchEntity2Button():V"/>
 		<constant value="A.__matchEntity2Textarea():V"/>
 		<constant value="__exec__"/>
-		<constant value="ModeloDatos2Form"/>
+		<constant value="DataModel2Form"/>
 		<constant value="NTransientLinkSet;.getLinksByRule(S):QNTransientLink;"/>
-		<constant value="A.__applyModeloDatos2Form(NTransientLink;):V"/>
+		<constant value="A.__applyDataModel2Form(NTransientLink;):V"/>
 		<constant value="Entity2Input"/>
 		<constant value="A.__applyEntity2Input(NTransientLink;):V"/>
 		<constant value="Entity2Button"/>
@@ -98,8 +98,8 @@
 		<constant value="16:2-16:33"/>
 		<constant value="16:36-16:40"/>
 		<constant value="16:2-16:40"/>
-		<constant value="__matchModeloDatos2Form"/>
-		<constant value="ModeloDatos"/>
+		<constant value="__matchDataModel2Form"/>
+		<constant value="DataModel"/>
 		<constant value="Entity"/>
 		<constant value="IN"/>
 		<constant value="MMOF!Classifier;.allInstancesFrom(S):QJ"/>
@@ -113,7 +113,7 @@
 		<constant value="NTransientLink;.addTargetElement(SJ):V"/>
 		<constant value="NTransientLinkSet;.addLink2(NTransientLink;B):V"/>
 		<constant value="20:7-26:3"/>
-		<constant value="__applyModeloDatos2Form"/>
+		<constant value="__applyDataModel2Form"/>
 		<constant value="NTransientLink;"/>
 		<constant value="NTransientLink;.getSourceElement(S):J"/>
 		<constant value="NTransientLink;.getTargetElement(S):J"/>
