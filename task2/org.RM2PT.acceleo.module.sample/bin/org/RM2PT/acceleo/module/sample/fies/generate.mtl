@@ -1,0 +1,93 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.eclipse.org/uml2/5.0.0/UML')] 
+
+[import org::RM2PT::acceleo::sample::service::uml2services /]
+
+
+[template public generateElement(aClass : Class)]
+
+[comment][if (aClass.hasStereotype('Bean'))][/comment]
+[file (aClass.classFileName(), false, 'UTF-8')] 
+package [aClass.containingPackages().name->sep('.')/];
+// [protected (' imports')] 
+// [/protected]
+
+	public class [aClass.name.toUpperFirst()/][aClass.inheritance()/]{
+			public [aClass.name.toUpperFirst()/]() {
+				super();
+			}
+		[for (p: Property| aClass.attribute) separator('\n')]
+			private [p.type.name/] [p.name/];
+		[/for]
+	
+		[for (p: Property | aClass.attribute) separator('\n')]
+			public [p.type.name/] get[p.name.toUpperFirst()/]() {
+				return this.[p.name/];
+			}
+			public void set[p.name.toUpperFirst()/]([p.type.name/] [p.name/]) {
+				this.[p.name/] = [p.name/];
+			}
+		[/for]
+		
+		[for (o: Operation| aClass.ownedOperation) separator('\n')]
+			public [o.type.name/] [o.name/]() {
+				// [protected (o.name)]
+				// TODO should be implemented
+				// [/protected]
+			}
+		[/for]
+	}
+ [/file]
+[comment][/if][/comment]
+[/template]
+
+[query public classFileName (aClass : Class) : String =
+ aClass.qualifiedName().replaceAll('\\.','/').concat('.java')
+ /]
+[query public qualifiedName (aClass : Class) : String =
+ aClass.containingPackages().name->sep('.')->including('.')->including(aClass.name)->toString()
+ /]
+[query public containingPackages (aClass : Class) : Sequence(Package) =
+ aClass.ancestors(Package)->reject(oclIsKindOf(Model))->reverse()
+ /]
+
+[template private inheritance(aClass : Class)]
+[aClass.extendedClasses()/][aClass.implementedInterfaces()/]
+[/template]
+
+[template private implementedInterfaces(aClass : Class)]
+[for (anInterface : Interface | aClass.getImplementedInterfaces()) before(' implements ') separator(', ')][anInterface.name.toUpperFirst()/][/for]
+[/template]
+
+[template private extendedClasses(aClass : Class)]
+[for (aSuperClass : Class | aClass.superClass) before(' extends ') separator(', ')][aSuperClass.name.toUpperFirst()/][/for]
+[/template]
+
+[query public interfaceFileName (aInterfaceFileName : Interface) : String =
+ aInterfaceFileName.qualifiedName().replaceAll('\\.','/').concat('.java')
+ /]
+[query public qualifiedName (aInterfaceFileName : Interface) : String =
+ aInterfaceFileName.containingPackages().name->sep('.')->including('.')->including(aInterfaceFileName.name)->toString()
+ /]
+[query public containingPackages (aInterfaceFileName : Interface) : Sequence(Package) =
+ aInterfaceFileName.ancestors(Package)->reject(oclIsKindOf(Model))->reverse()
+ /]
+
+[template public genInterface(aInterface : Interface)]
+[file (aInterface.interfaceFileName(), false, 'UTF-8')] 
+package [aInterface.containingPackages().name->sep('.')/];
+
+public interface [aInterface.name.toUpperFirst()/] {
+
+
+	public [if (anOperation.type.oclIsUndefined())]void[else][anOperation.type.name/][/if] [anOperation.name.toLowerFirst()/]([anOperation.parameters()/]);
+	
+	[/for]
+}
+[/file]
+[/template]
+
+[template private parameters(anOperation : Operation)]
+[for (aParameter : Parameter | anOperation.ownedParameter->reject(aParameter : Parameter | aParameter.direction = ParameterDirectionKind::return)) separator(', ')][aParameter.type.name.toUpperFirst()/] [aParameter.name.toLowerFirst()/][/for]
+[/template]
+

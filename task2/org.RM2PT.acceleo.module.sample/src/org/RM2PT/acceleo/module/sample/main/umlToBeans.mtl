@@ -1,0 +1,14 @@
+ [comment encoding = UTF-8 /]
+ [module umlToBeans('http://www.eclipse.org/uml2/5.0.0/UML')/]
+ 
+ [import org::RM2PT::acceleo::module::sample::fies::generate /]
+ 
+ [template public umlToBeans(aPackage : Package)]
+ [comment @main /]
+ [for (aClass : Class | aPackage.packagedElement->filter(Class))]
+ 	[aClass.generateElement()/]
+ [/for]
+ [for (aInterface : Interface | aPackage.packagedElement->filter(Interface))]
+ 	[aInterface.genInterface()/]
+ [/for]
+ [/template]
